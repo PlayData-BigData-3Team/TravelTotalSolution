@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.work.dao.TransportDao">
+
+   
+      <!-- public Member loginToMember(String memberId, String memberPw) -->
+   <select id="selectBusList" resultType="com.work.dto.Bus">
+      select *
+      FROM Bus
+      WHERE arrNum = 2
+   </select>
+   
+
+<!-- <select id="randomBusList" resultType="com.work.dto.Bus">
+ <![CDATA[ 
+ select * 
+    from(
+        select distinct a.depplacenm dep, c.region, a.charge depCharge, c.hotel_name hotel, c.hotel_price, b.depplacenm dep2, b.charge depCharge2, (a.charge + b.charge + c.hotel_price) total_price
+         from (   select * 
+                from bus
+                where depplandtime LIKE '20210812%'
+            ) a, 
+            (   select * 
+                from bus
+                where depplandtime LIKE '20210813%'
+            ) b, hotel c
+        where a.arrnum = c.placenum
+        AND b.depnum = c.placenum
+        AND (a.charge + c.hotel_price + b.charge) <= 100000
+        ORDER BY DBMS_RANDOM.VALUE) t
+        
+         ]]>
+</select>
+ -->
+
+  <!-- Bus
+  -->
+  <select id="selectBusListByCondition" resultType="Bus" parameterType="map">
+      <![CDATA[ 
+    select * 
+    from(
+        select distinct a.depplacenm dep, c.region, to_char(a.charge,'l999,999,999') depCharge, c.img_link, c.hotel_link, c.hotel_name hotel, to_char(c.hotel_price,'l999,999,999') hotelprice, b.depplacenm dep2, to_char(b.charge,'l999,999,999') depCharge2, to_char((a.charge + b.charge + c.hotel_price),'l999,999,999') total_price
+         from (   select * 
+                from bus
+                where depplandtime LIKE '20210817%'
+            ) a, 
+            (   select * 
+                from bus
+                where depplandtime LIKE '20210818%'
+            ) b, hotel c
+        where a.depnum = #{nc_select}
+        AND c.hotel_score >= 7.0 
+        AND a.arrnum = c.placenum
+        AND b.depnum = c.placenum
+        AND (a.charge + c.hotel_price + b.charge) <= #{amount}
+        ORDER BY DBMS_RANDOM.VALUE) t        
+         ]]> 
+     <if test="keyword != null and keyword != ''">
+        <where>
+              <![CDATA[t.region = #{keyword} and rownum <=1 ]]>
+        </where>
+     </if>
+  </select>
+  
+  
+  <!-- Train
+  -->
+  <select id="selectTrainListByCondition" resultType="Train" parameterType="map">
+      <![CDATA[ 
+    select * 
+    from(
+        select distinct a.depplacename dep, c.region, to_char(a.adultcharge,'l999,999,999') depCharge, c.img_link, c.hotel_link, c.hotel_name hotel, to_char(c.hotel_price,'l999,999,999') hotelprice, b.depplacename dep2, to_char(b.adultcharge,'l999,999,999') depCharge2, to_char((a.adultcharge + b.adultcharge + c.hotel_price),'l999,999,999') total_price
+               , c.hotel_score
+         from (   select * 
+                from train
+                where depplandtime LIKE '20210817%'
+            ) a, 
+            (   select * 
+                from train
+                where depplandtime LIKE '20210818%'
+            ) b, hotel c
+        where a.depnum = #{nc_select}
+        AND c.hotel_score >= 7.0 
+        AND a.arrnum = c.placenum
+        AND b.depnum = c.placenum
+        AND (a.adultcharge + b.adultcharge + c.hotel_price) <= #{amount}
+        ORDER BY DBMS_RANDOM.VALUE) t      
+         ]]> 
+     <if test="keyword != null and keyword != ''">
+        <where>
+              <![CDATA[t.region = #{keyword} and rownum <=1 ]]>
+        </where>
+     </if>
+  </select>
+  
+  
+  <!-- Air
+  -->
+  <select id="selectAirListByCondition" resultType="Air" parameterType="map">
+      <![CDATA[ 
+    select * 
+    from(
+        select distinct a.dep dep2, c.region, to_char(a.price,'l999,999,999') depCharge,c.img_link, c.hotel_link,  c.hotel_name hotel, to_char(c.hotel_price,'l999,999,999') hotelprice, b.dep dep3, to_char(b.price,'l999,999,999') depCharge2, to_char((a.price + b.price + c.hotel_price),'l999,999,999') total_price
+         from (   select * 
+                from airline
+                where air_date LIKE '20210817%'
+            ) a, 
+            (   select * 
+                from airline
+                where air_date LIKE '20210818%'
+            ) b, hotel c
+        where a.depnum = #{nc_select}
+        AND c.hotel_score >= 7.0 
+        AND a.arrnum = c.placenum
+        AND b.depnum = c.placenum
+        AND (a.price + b.price + c.hotel_price) <= #{amount}
+        ORDER BY DBMS_RANDOM.VALUE) t       
+         ]]> 
+     <if test="keyword != null and keyword != ''">
+        <where>
+              <![CDATA[t.region = #{keyword} and rownum <=1 ]]>
+        </where>
+     </if>
+  </select>
+  
+
+  
+</mapper>
+
+
+
+
+   
+
+
+
+
+
+
+
+
+

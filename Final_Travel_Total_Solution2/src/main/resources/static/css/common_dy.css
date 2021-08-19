@@ -1,0 +1,175 @@
+@charset "UTF-8";
+
+/* 마이페이지 */
+body.myPage_dy{
+  padding: 0;
+  margin: 0;
+}
+div{
+  box-sizing: border-box;
+}
+
+.circle_dy{
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 2.5px;
+  background-color: #ff0000;
+  position: absolute;
+  top: -5px;
+  left: 110%;
+}
+
+
+.wrap_dy{
+  background-color: #F8F8F8;  
+}
+/* 남색배경 */
+.greenContainer_dy{  
+  height: 150px;
+  background-color: #0c3e71;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+}
+
+.greenContainer_dy .name_dy{
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+} 
+.greenContainer_dy .modify_dy{
+  margin-left: auto;
+}
+
+
+.summaryContainer_dy{
+  background-color: white;  
+  display: flex;  
+  padding: 21px 16px;  
+  height: 90px;
+  margin-bottom: 10px;
+}
+
+.summaryContainer_dy .item_dy{
+  flex-grow: 1
+}
+
+.summaryContainer_dy .number_dy{
+  font-size: 19px;
+  font-weight: bold;
+  color: #fe5c24;
+}
+
+.summaryContainer_dy .item_dy > div:nth-child(2){
+  font-size: 13px;
+}
+
+
+.shippingStatusContainer_dy{
+  padding: 21px 16px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+
+.shippingStatusContainer_dy .title_dy{
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+
+.shippingStatusContainer_dy .status_dy{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 21px;
+}
+
+.shippingStatusContainer_dy .item_dy{
+  display: flex;
+}
+
+.shippingStatusContainer_dy .number_dy{
+  font-size: 31px;
+  font-weight: 500;
+  text-align: center;
+}
+.shippingStatusContainer_dy .text_dy{
+  font-size: 12px;
+  font-weight: normal;
+  color: #c2c2c2;
+  text-align: center;
+}
+.shippingStatusContainer_dy .icon_dy{
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  width: 16px;
+  height: 16px;
+}
+
+
+.listContainer_dy{  
+  padding: 0;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+}
+.listContainer_dy .item_dy{  
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  color: black;
+  text-decoration: none;  
+  height: 56px;
+  box-sizing: border-box;
+}
+.listContainer_dy .icon_dy{  
+  margin-right: 14px;
+}
+.listContainer_dy .text_dy{
+  font-size: 16px;
+  position: relative;
+}
+.listContainer_dy .right_dy{
+  margin-left: auto;
+}
+
+
+.listContainer_dy .smallLight_dy{
+  font-size: 14px;
+  color: #c2c2c2;  
+}
+.listContainer_dy .smallLight_dy > span{
+  margin-left: 10px;
+}
+
+.listContainer_dy .right_dy .blct_dy{
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+
+
+
+.infoContainer_dy{
+  background-color: white; 
+  display: flex;
+  height: 100px;
+  margin-bottom: 10px;    
+}
+
+.infoContainer_dy .item_dy{
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 13px;
+  text-decoration: none;
+  color: black;
+}
+.infoContainer_dy .item_dy > div:first-child{
+  margin-bottom: 2px;
+}

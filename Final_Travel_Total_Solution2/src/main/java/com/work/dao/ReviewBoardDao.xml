@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.work.dao.ReviewBoardDao">
+
+	<!-- public int addReview(ReviewBoard dto);
+			#{mileage, jdbcType=NUMERIC}, #{manager, jdbcType=VARCHAR} null colum config -->
+	<insert id="addReview" parameterType="ReviewBoard">
+		insert into ReviewBoard
+		values(Review_SEQ.NEXTVAL, #{title}, #{contents}, #{memberId}, #{creationDate}, #{views}, #{boardLike})
+	</insert>
+  	
+  	<!-- public List<ReviewBoard> selectReviewList(); -->
+  	<select id="selectReviewList" resultType="ReviewBoard">
+  		select * from ReviewBoard
+  	</select>
+  	
+  	<!-- public ReviewBoard selectReviewBoard(int postNo); -->
+  	 <select id="selectReviewBoard" parameterType="map" resultType="ReviewBoard">
+	  	select * from ReviewBoard where post_no = #{postNo}
+	 </select>
+	 
+	 <!-- public int updateReviewBoard(ReviewBoard dto); -->
+	 <update id="updateReviewBoard" parameterType="ReviewBoard">
+	  	UPDATE ReviewBoard SET title=#{title}, contents=#{contents} where post_No=#{postNo}
+	 </update>
+	 
+	 <!-- public int deleteReviewBoard(int postNo); -->
+	<delete id="deleteReviewBoard" parameterType="int">
+        DELETE FROM ReviewBoard WHERE post_No = #{postNo}
+    </delete> 
+    
+    <!--public int updateReviewCount(int views); 리뷰 조회수 증가-->
+	<update id="updateReviewCount" parameterType="map">
+		update ReviewBoard set views = views + 1 where views = #{views} and post_no = #{postNo}
+	</update>
+	
+	<!-- 게시글 총 갯수 public int boardListCnt(); -->
+	<select id="boardListCnt" resultType="int">
+	        SELECT count(*)
+	        FROM ReviewBoard
+	</select>
+	
+	<!-- 페이징 처리2 public List<Map<String, Object>> boardListCnt(Criteria cri); -->
+	<select id="boardList" resultType="ReviewBoard" parameterType="hashmap">    			
+			<![CDATA[
+           SELECT
+                *
+            FROM
+                (
+                    SELECT
+                        ROWNUM AS RNUM,
+                        A.*,            
+                        COUNT(*) OVER() AS TOTCNT
+                    FROM
+                        (
+                            SELECT
+                                *
+                            FROM
+                                ReviewBoard
+                            ORDER BY
+                                post_No desc
+                         
+                        ) A
+                )
+         WHERE
+             RNUM > #{pageStart} AND RNUM <= #{perPageNum}      
+           ]]> 
+	</select>
+	
+	<!-- 내가 쓴 리뷰 갯수 public int myReviewCnt(String memberId); -->
+	<select id="myReviewCnt" parameterType="String" resultType="int">
+		select count(*) from reviewBoard where member_id = #{memberId}
+	</select>
+</mapper>

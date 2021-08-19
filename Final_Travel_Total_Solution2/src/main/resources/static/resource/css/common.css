@@ -1,0 +1,370 @@
+@charset "UTF-8";
+/* Filename : css/common.css */
+
+/* a config*/
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	color: red;
+}
+
+/* form config : input 태그 block, margin 설정 */
+input {
+	/*display: block;*/
+	margin: 5px;
+}
+
+/* form config : input 태그 submit, reset, button inline 설정 */
+input[type="submit"], input[type="reset"], input[type="button"] {
+	display: inline;
+}
+
+input[type="submit"] {
+	border: none;
+	background-color: orangered;
+	color: white;
+	border-radius: 3px;
+	width: 258px;
+	height: 40px;
+	padding: 5px 0;
+}
+
+input[type="reset"] {
+	border: none;
+	background-color: gray;
+	color: white;
+	border-radius: 3px;
+	width: 60px;
+	height: 30px;
+	padding: 5px 0;
+}
+
+input[type="submit"]:hover {
+	background-color: orange;
+}
+
+input[type="reset"]:hover {
+	background-color: royalblue;
+}
+
+/* table */
+table, tr, td, th {
+	padding: 2px;
+	margin: 2px;
+}
+
+/* 다중조건검색 */
+input.inline {
+	display: inline;
+}
+
+div.multipleCondition {
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+/* 조각페이지 메뉴 config */
+span.seperator {
+	font-size: 0.7em;
+	padding: 0 5px;
+}
+
+div.beforeMenu, div.afterMenu, div.mainMenu, div.afterMenuAdmin {
+	text-align: right;
+	font-size: 11px;
+}
+
+div.footerMenu {
+	text-align: center;
+}
+
+/* 메인페이지 */
+div#mainTitle {
+	padding-top: 200px;
+	color: black;
+	text-align: center;
+	vertical-align: middle;
+}
+
+div#mainBody {
+	vertical-align: middle;
+	color: black;
+	text-align: center;
+}
+
+table.search {
+	text-align: center;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 200px;
+}
+
+input#startpoint, input#money {
+	color: #676767;
+	font-weight: bold;
+	padding: 0px 0px 0px 10px;
+	width: 250px;
+	height: 40px;
+	border: 1px solid gray;
+}
+
+input#recommend {
+	width: 550px;
+	height: 40px;
+	background-color: skyblue;
+	color: black;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.dropbtn {
+	background-color: white;
+	color: black;
+	padding: 16px;
+	font-size: 12px;
+	border: none;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 150px;
+	right: 3px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	background-color: #ddd;
+}
+
+/* 로그인 */
+h3#h3 {
+	display: block;
+	text-align: center;
+	padding-top: 100px;
+	font-size: 30px;
+}
+
+#table1 {
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+	width: 300px;
+	height: 400px;
+	padding-top: 5px;	
+	border-radius: 12px;
+}
+
+table.table custom-table {
+	width : 1024px;	
+}
+
+#table2 {
+	width: 300px;
+	height: 300px;
+	text-align: center;
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 10px;
+	border: 1px solid #F5F5F5;
+	border-spacing: 0px 5px;
+}
+
+a#joinMember {
+	color: gray;
+	text-decoration: none;
+}
+
+input#member_Id {
+	width: 250px;
+	height: 40px;
+	border: 1px solid;
+}
+
+input#member_Pw {
+	width: 250px;
+	height: 40px;
+	border: 1px solid;
+}
+
+#kakaologin {
+	width: 260px;
+	height: 40px;
+}
+
+#logout {
+	border: none;
+	background-color: orangered;
+	color: white;
+	border-radius: 3px;
+	width: 258px;
+	height: 40px;
+	padding: 5px 0;
+}
+
+#h1 {
+	font-size: 20px;
+}
+
+/* 회원가입 */
+div.titleblank {
+	height: 50px;
+}
+
+h1.tableTitle {
+	color: #323232;
+	font-weight: 550;
+	text-align: center;
+	margin: 50px;
+}
+
+table.joinContents {
+	width: 380px;
+	height: 661.4px;
+	text-align: center;
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 10px;
+	border: 1px solid #F5F5F5;
+	border-spacing: 0px 5px;
+}
+
+td.top-tr {
+	padding: 12px;
+}
+
+td.input_title, td.msg {
+	text-align: left;
+	padding: 0px 0px 0px 40px;
+}
+
+td.input_title {
+	color: #676767;
+	font-weight: bold;
+}
+
+td.msg {
+	height: 20px;
+	font-size: 10px;
+}
+
+input#memberId, input#memberPw, input#email, input#name, input#mobile,
+	input#birth, input#gender {
+	color: #676767;
+	font-weight: bold;
+	padding: 0px 0px 0px 10px;
+	width: 280px;
+	height: 40px;
+	border-radius: 10px;
+	border: 1px solid #F5F5F5;
+}
+
+input::placeholder {
+	color: #B5B5BC;
+}
+
+input:focus {
+	outline: none;
+	box-shadow: 0 0 0 2px #FED5D8;
+}
+
+input.alertContents {
+	text-align: center;
+}
+
+#joinMemberButton {
+	color: white;
+	background: gray;
+	width: 280px;
+	height: 40px;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+table {
+	border-spacing: 0px 10px;
+}
+
+span {
+	font-size: 13.5px;
+	font-weight: 600;
+	color: #909090;
+}
+
+/* b {
+	color: pink;
+} */
+
+button.password-show {
+	font-size: 13.5px;
+	position: absolute;
+	margin-left: -48px;
+	margin-top: 16px;
+	color: black;
+	background: white;
+	border: none;
+}
+
+#map {
+	width: 500px;
+	height: 750px;
+	text-align: center;
+	margin-left: auto;
+	margin-top: auto;
+}
+
+
+table.map {
+	text-align: center;
+}
+
+#main_65 {
+	width: 100%;
+	height: 600px;
+	background: url("/resource/img/travel_46.jpg") center center;
+	background-size: cover;
+	position: absolute;
+	margin-top: 50px;
+	margin-bottom: 10px;
+	z-index: 7;
+}
+
+#travel-sj .travel-container-sj {
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+}

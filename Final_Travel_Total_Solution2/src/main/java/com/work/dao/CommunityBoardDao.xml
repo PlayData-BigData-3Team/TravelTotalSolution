@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.work.dao.CommunityBoardDao">
+
+	<!-- public int addReview(String memberId, ReviewBoard dto);
+			#{mileage, jdbcType=NUMERIC}, #{manager, jdbcType=VARCHAR} null colum config -->
+	<insert id="addCommunity" parameterType="CommunityBoard">
+		insert into CommunityBoard
+		values(Community_SEQ.nextval, #{title}, #{contents}, #{memberId}, #{creationDate}, #{views}, #{boardLike})
+	</insert>
+	
+		<!-- public Member loginToMember(String memberId, String memberPw) -->
+	<select id="selectCommunityList" resultType="com.work.dto.CommunityBoard">
+		SELECT 
+		ROWNUM
+		, post_No
+        , title
+        , member_Id
+        , creation_Date
+        , views
+        , board_Like
+FROM
+(
+    SELECT 
+    * 
+    FROM 
+    CommunityBoard 
+    ORDER BY creation_Date 
+)
+	</select>
+	
+		
+	<!-- 페이징 -->
+	<select id="boardList" resultType="com.work.dto.CommunityBoard" parameterType="hashmap">
+	        <![CDATA[
+	        SELECT
+				    *
+				FROM
+				    (
+				        SELECT
+				            ROWNUM AS RNUM,
+				            A.*,            
+				            COUNT(*) OVER() AS TOTCNT
+				        FROM
+				            (
+				                SELECT
+				                    *
+				                FROM
+				                    communityBoard
+				                ORDER BY
+				                    creation_date desc
+				             
+				            ) A
+				    )
+			WHERE
+			    RNUM > #{pageStart} AND RNUM <= #{perPageNum}      
+	        ]]>
+	</select>
+
+
+	
+	<!-- 게시글 총 개수 -->
+	<select id="boardListCnt" resultType="int">
+	        SELECT count(*)
+	        FROM CommunityBoard
+	</select>
+	
+	
+	
+	  <!-- public List<Member> selectMemberListByCondition(String condition, String keyword) 
+  	select * from member WHERE MEMBER_ID='user01'
+  	select * from member WHERE MILEAGE >= 100000
+  	keyword가 미입력하면 전체회원조회, 즉 where 구문 지정하지 않음
+  -->
+  <select id="selectCommunityList2" resultType="CommunityBoard" parameterType="map">
+  	select * from CommunityBoard 
+  	<if test="keyword != null and keyword != ''">
+  		<where>
+  			<choose>
+  				<when test="condition == 'memberId'">MEMBER_ID = #{keyword}</when>
+  				<when test="condition == 'name'">name = #{keyword}</when>
+  				<when test="condition == 'mobile'">mobile like '%' || #{keyword}</when>
+  				<when test="condition == 'email'">email = #{keyword}</when>
+  				<when test="condition == 'grade'">grade = #{keyword}</when>
+  				<when test="condition == 'mileage'">mileage >= #{keyword}</when>
+  				<when test="condition == 'manager'">name = #{keyword}</when>
+  				<when test="condition == 'memberIdOrEmail'">MEMBER_ID = #{keyword} OR email = #{keyword}</when>
+  			</choose>
+  		</where>
+  	</if>
+  </select>
+  
+  <!-- 게시글 삭제  -->
+	
+	<delete id="communityDelete" parameterType="int">
+        DELETE FROM CommunityBoard
+        WHERE post_No = #{postNo}
+    </delete>
+ <!-- 게시글 읽기  -->
+	<select id="boardRead" resultType="CommunityBoard">
+        SELECT post_No, title, contents, member_Id
+        FROM CommunityBoard
+        WHERE post_No = #{postNo}
+    </select>
+
+ <!-- 게시글 수정  -->    
+    <update id="boardModify" parameterType="CommunityBoard">
+        UPDATE CommunityBoard
+        SET title = #{title},
+            contents = #{contents}
+        WHERE post_No = #{postNo}
+    </update>
+    
+    
+    <!-- 조회수 올리기 -->
+	<update id="updateView">
+		UPDATE CommunityBoard 
+		SET views = views + 1 
+		WHERE post_No = #{postNo}
+	</update>
+
+
+	<!-- 내가 쓴 동행글 갯수 public int myCommunityCnt(String memberId); -->
+  	<select id="myCommunityCnt" parameterType="String" resultType="int">
+  		select count(*) from communityBoard where member_id = #{memberId}
+  	</select>
+  
+</mapper>
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
